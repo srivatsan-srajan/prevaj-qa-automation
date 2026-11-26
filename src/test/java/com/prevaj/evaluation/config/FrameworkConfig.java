@@ -26,18 +26,24 @@ public final class FrameworkConfig {
 	private FrameworkConfig() {
 	}
 
-	public static String get(String key) {
+	private static String resolve(String key) {
 		String value = System.getProperty(key);
 
 		if (value == null || value.isBlank()) {
 			value = PROPERTIES.getProperty(key);
 		}
 
+		return value == null ? null : value.trim();
+	}
+
+	public static String get(String key) {
+		String value = resolve(key);
+
 		if (value == null || value.isBlank()) {
 			throw new IllegalArgumentException("Missing or empty configuration property: " + key);
 		}
 
-		return value.trim();
+		return value;
 	}
 
 	public static String getApiKey() {
@@ -63,20 +69,16 @@ public final class FrameworkConfig {
 	}
 
 	public static boolean getBoolean(String key, boolean defaultValue) {
-		String value = System.getProperty(key);
-
-		if (value == null || value.isBlank()) {
-			value = PROPERTIES.getProperty(key);
-		}
+		String value = resolve(key);
 
 		if (value == null || value.isBlank()) {
 			return defaultValue;
 		}
 
-		if (!value.trim().equalsIgnoreCase("true") && !value.trim().equalsIgnoreCase("false")) {
+		if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
 			throw new IllegalArgumentException("Configuration value must be true or false: " + key);
 		}
 
-		return Boolean.parseBoolean(value.trim());
+		return Boolean.parseBoolean(value);
 	}
 }

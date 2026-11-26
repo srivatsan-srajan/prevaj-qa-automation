@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutPage extends BasePage {
+	
+	private static final String CHECKOUT_INFORMATION_PATH = "checkout-step-one.html";
+	private static final String CHECKOUT_OVERVIEW_PATH = "checkout-step-two.html";
 
 	private final By firstName = By.id("first-name");
 	private final By lastName = By.id("last-name");
@@ -37,7 +40,7 @@ public class CheckoutPage extends BasePage {
 
 	public void continueToOverview() {
 		click(continueButton);
-		wait.until(ExpectedConditions.urlContains("checkout-step-two.html"));
+		wait.until(ExpectedConditions.urlContains(CHECKOUT_OVERVIEW_PATH));
 	}
 
 	public void submitInformation() {
@@ -49,7 +52,7 @@ public class CheckoutPage extends BasePage {
 	}
 
 	public boolean isCheckoutInformationPageDisplayed() {
-		return driver.getCurrentUrl().contains("checkout-step-one.html");
+		return driver.getCurrentUrl().contains(CHECKOUT_INFORMATION_PATH);
 	}
 
 	public List<BigDecimal> getItemPrices() {
