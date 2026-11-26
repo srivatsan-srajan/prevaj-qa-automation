@@ -1,4 +1,3 @@
-
 name: Prevaj QA Automation
 
 on:
@@ -36,7 +35,7 @@ jobs:
           mvn --batch-mode clean test
           -Dapi.key="${{ secrets.REQRES_API_KEY }}"
           -Dcucumber.filter.tags="@api"
-
+      
       - name: Upload API Surefire reports
         if: always()
         uses: actions/upload-artifact@v7
@@ -44,13 +43,17 @@ jobs:
           name: api-surefire-reports
           path: target/surefire-reports/
           retention-days: 14
+      
+      - name: Rename API Cucumber report
+        if: always()
+        run: cp target/cucumber-report/cucumber.html target/cucumber-report/api-cucumber-report.html
 
       - name: Upload API Cucumber HTML report
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: api-cucumber-report
-          path: target/cucumber-report/cucumber.html
+          path: target/cucumber-report/api-cucumber-report.html
           archive: false
           if-no-files-found: error
           retention-days: 14
@@ -86,13 +89,17 @@ jobs:
           name: ui-surefire-reports
           path: target/surefire-reports/
           retention-days: 14
+      
+      - name: Rename UI Cucumber report
+        if: always()
+        run: cp target/cucumber-report/cucumber.html target/cucumber-report/ui-cucumber-report.html
 
       - name: Upload UI Cucumber HTML report
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: ui-cucumber-report
-          path: target/cucumber-report/cucumber.html
+          path: target/cucumber-report/ui-cucumber-report.html
           archive: false
           if-no-files-found: error
           retention-days: 14
