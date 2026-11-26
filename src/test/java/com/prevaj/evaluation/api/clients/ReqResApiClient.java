@@ -1,8 +1,8 @@
 package com.prevaj.evaluation.api.clients;
 
 import com.prevaj.evaluation.api.auth.ApiKeyAuthentication;
+import com.prevaj.evaluation.api.payloads.CreateUserRequest;
 import com.prevaj.evaluation.api.payloads.LoginPayload;
-import com.prevaj.evaluation.api.payloads.UserPayload;
 import com.prevaj.evaluation.config.FrameworkConfig;
 
 import io.restassured.response.Response;
@@ -10,10 +10,10 @@ import io.restassured.response.Response;
 public class ReqResApiClient extends BaseApiClient {
 
 	public ReqResApiClient() {
-		super(FrameworkConfig.get("reqres.base.url"), 
-		new ApiKeyAuthentication("x-api-key", FrameworkConfig.getApiKey()
-		)
-		);
+	    super(
+	        FrameworkConfig.get("reqres.base.url"),
+	        new ApiKeyAuthentication("x-api-key", FrameworkConfig.getApiKey())
+	    );
 	}
 
 	private static final String USERS_ENDPOINT = "/api/users";
@@ -27,7 +27,7 @@ public class ReqResApiClient extends BaseApiClient {
 		return request().pathParam("id", userId).get(USERS_ENDPOINT + "/{id}");
 	}
 
-	public Response createUser(UserPayload user) {
+	public Response createUser(CreateUserRequest user) {
 		return request().body(user).post(USERS_ENDPOINT);
 	}
 

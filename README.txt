@@ -64,7 +64,7 @@ src/test/java/com/prevaj/evaluation
   - TestRunner: starts Cucumber tests through JUnit Platform.
 
 - stepdef
-  - ApiTestSteps, UserSteps, UiTestSteps and LoginSteps: contain the code that connects feature-file steps to API operations and UI page actions, and checks the test results.
+  - ApiTestSteps and UiTestSteps: contain the code that connects feature-file steps to API operations and UI page actions, and checks the test results.
 
 - ui/driver
   - DriverFactory: creates Chrome, Firefox or Edge drivers and applies browser settings, including headless mode.

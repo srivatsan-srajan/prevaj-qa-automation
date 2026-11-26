@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.prevaj.evaluation.api.modules.UserModule;
+import com.prevaj.evaluation.api.payloads.CreateUserRequest;
 import com.prevaj.evaluation.api.payloads.LoginPayload;
 import com.prevaj.evaluation.api.payloads.UserPayload;
 import com.prevaj.evaluation.stepdef.context.ApiScenarioContext;
@@ -93,7 +94,7 @@ public class ApiTestSteps {
 
 	@When("I create a user with following {word} {word}")
 	public void createNewUser(String name, String job) {
-		context.setCreatedUser(userModule.createUser(new UserPayload(name, job)));
+		context.setCreatedUser(userModule.createUser(new CreateUserRequest(name, job)));
 	}
 
 	@Then("response should contain the following data")

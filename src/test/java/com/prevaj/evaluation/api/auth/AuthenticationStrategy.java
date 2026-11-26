@@ -4,5 +4,5 @@ import io.restassured.builder.RequestSpecBuilder;
 
 public interface AuthenticationStrategy {
 
-    void apply(RequestSpecBuilder builder);
+	void apply(RequestSpecBuilder builder);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.prevaj.evaluation.api.clients.ReqResApiClient;
+import com.prevaj.evaluation.api.payloads.CreateUserRequest;
 import com.prevaj.evaluation.api.payloads.LoginPayload;
 import com.prevaj.evaluation.api.payloads.UserListResponse;
 import com.prevaj.evaluation.api.payloads.UserPayload;
@@ -59,10 +60,10 @@ public class UserModule {
 		return apiClient.getUserById(userId);
 	}
 
-	public UserPayload createUser(UserPayload user) {
-		Response response = apiClient.createUser(user);
-		response.then().statusCode(201);
-		return response.as(UserPayload.class);
+	public UserPayload createUser(CreateUserRequest user) {
+	    Response response = apiClient.createUser(user);
+	    response.then().statusCode(201);
+	    return response.as(UserPayload.class);
 	}
 
 	public Response login(LoginPayload login) {

@@ -10,31 +10,27 @@ import io.restassured.specification.RequestSpecification;
 
 public abstract class BaseApiClient {
 
-    private final RequestSpecification requestSpecification;
+	private final RequestSpecification requestSpecification;
 
-    protected BaseApiClient(
-            String baseUrl,
-            AuthenticationStrategy authentication) {
+	protected BaseApiClient(String baseUrl, AuthenticationStrategy authentication) {
 
-        if (baseUrl == null || baseUrl.isBlank()) {
-            throw new IllegalArgumentException("Base URL must not be blank");
-        }
+		if (baseUrl == null || baseUrl.isBlank()) {
+			throw new IllegalArgumentException("Base URL must not be blank");
+		}
 
-        if (authentication == null) {
-            throw new IllegalArgumentException("Authentication strategy cannot be null");
-        }
+		if (authentication == null) {
+			throw new IllegalArgumentException("Authentication strategy cannot be null");
+		}
 
-        RequestSpecBuilder builder = new RequestSpecBuilder()
-                .setBaseUri(baseUrl)
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON);
+		RequestSpecBuilder builder = new RequestSpecBuilder().setBaseUri(baseUrl).setContentType(ContentType.JSON)
+				.setAccept(ContentType.JSON);
 
-        authentication.apply(builder);
+		authentication.apply(builder);
 
-        requestSpecification = builder.build();
-    }
+		requestSpecification = builder.build();
+	}
 
-    protected RequestSpecification request() {
-        return given().spec(requestSpecification);
-    }
+	protected RequestSpecification request() {
+		return given().spec(requestSpecification);
+	}
 }

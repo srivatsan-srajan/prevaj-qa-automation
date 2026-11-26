@@ -34,10 +34,16 @@ public class UiTestSteps {
 
 	@Given("I login in with the following details")
 	public void login(DataTable dataTable) {
-
 		Map<String, String> credentials = dataTable.asMaps().get(0);
+		context.getLoginPage().performLogin(
+				credentials.get("userName"),
+				credentials.get("Password")
+		);
+	}
 
-		context.getLoginPage().performLogin(credentials.get("userName"), credentials.get("Password"));
+	@When("I login with username {string} and password {string}")
+	public void loginWithCredentials(String username, String password) {
+		context.getLoginPage().performLogin(username, password);
 	}
 
 	@Then("I should see the products page")
