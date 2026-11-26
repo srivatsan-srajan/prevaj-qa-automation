@@ -1,4 +1,3 @@
-
 package com.prevaj.evaluation.stepdef;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,19 +13,19 @@ import java.util.Set;
 import com.prevaj.evaluation.api.modules.UserModule;
 import com.prevaj.evaluation.api.payloads.LoginPayload;
 import com.prevaj.evaluation.api.payloads.UserPayload;
-import com.prevaj.evaluation.stepdef.context.APIScenarioContext;
+import com.prevaj.evaluation.stepdef.context.ApiScenarioContext;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class APITestSteps {
+public class ApiTestSteps {
 
-	private final APIScenarioContext context;
+	private final ApiScenarioContext context;
 	private final UserModule userModule;
 
-	public APITestSteps(APIScenarioContext context) {
+	public ApiTestSteps(ApiScenarioContext context) {
 		this.context = context;
 		this.userModule = new UserModule();
 	}

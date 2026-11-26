@@ -10,12 +10,10 @@ import io.restassured.response.Response;
 public class ReqResApiClient extends BaseApiClient {
 
 	public ReqResApiClient() {
-		super(FrameworkConfig.get("reqres.base.url"), new ApiKeyAuthentication("x-api-key", FrameworkConfig.getApiKey()
-
+		super(FrameworkConfig.get("reqres.base.url"), 
+		new ApiKeyAuthentication("x-api-key", FrameworkConfig.getApiKey()
 		)
-
 		);
-
 	}
 
 	private static final String USERS_ENDPOINT = "/api/users";

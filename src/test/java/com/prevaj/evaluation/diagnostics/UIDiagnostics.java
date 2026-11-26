@@ -9,7 +9,7 @@ import org.openqa.selenium.logging.LogType;
 
 import io.cucumber.java.Scenario;
 
-public class UIDiagnostics {
+public class UiDiagnostics {
 
 	public void capture(WebDriver driver, Scenario scenario) {
 

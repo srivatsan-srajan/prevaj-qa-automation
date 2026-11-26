@@ -1,14 +1,14 @@
 package com.prevaj.evaluation.stepdef.ui;
 
-import com.prevaj.evaluation.stepdef.context.UIScenarioContext;
+import com.prevaj.evaluation.stepdef.context.UiScenarioContext;
 
 import io.cucumber.java.en.When;
 
 public class LoginSteps {
 
-    private final UIScenarioContext context;
+    private final UiScenarioContext context;
 
-    public LoginSteps(UIScenarioContext context) {
+    public LoginSteps(UiScenarioContext context) {
         this.context = context;
     }
 

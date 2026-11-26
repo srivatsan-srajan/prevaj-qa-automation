@@ -1,4 +1,3 @@
-
 package com.prevaj.evaluation.stepdef.context;
 
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import com.prevaj.evaluation.ui.pages.CheckoutPage;
 import com.prevaj.evaluation.ui.pages.LoginPage;
 import com.prevaj.evaluation.ui.pages.ProductsPage;
 
-public class UIScenarioContext {
+public class UiScenarioContext {
 
 	private LoginPage loginPage;
 	private ProductsPage productsPage;
@@ -55,9 +54,9 @@ public class UIScenarioContext {
 		}
 		return checkoutPage;
 	}
-	
+
 	public WebDriver getDriver() {
-	    return driver();
+		return driver();
 	}
 
 	public List<String> getSelectedProducts() {

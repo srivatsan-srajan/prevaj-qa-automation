@@ -1,17 +1,16 @@
-
 package com.prevaj.evaluation.stepdef.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.prevaj.evaluation.stepdef.context.APIScenarioContext;
+import com.prevaj.evaluation.stepdef.context.ApiScenarioContext;
 
 import io.cucumber.java.en.Then;
 
 public class UserSteps {
 
-    private final APIScenarioContext context;
+    private final ApiScenarioContext context;
 
-    public UserSteps(APIScenarioContext context) {
+    public UserSteps(ApiScenarioContext context) {
         this.context = context;
     }
 

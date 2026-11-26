@@ -1,4 +1,3 @@
-
 package com.prevaj.evaluation.stepdef.context;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import com.prevaj.evaluation.api.payloads.UserPayload;
 
 import io.restassured.response.Response;
 
-public class APIScenarioContext {
+public class ApiScenarioContext {
 
 	private UserListResponse userList;
 	private int expectedTotalUsers;

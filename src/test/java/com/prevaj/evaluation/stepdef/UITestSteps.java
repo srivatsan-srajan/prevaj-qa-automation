@@ -1,4 +1,3 @@
-
 package com.prevaj.evaluation.stepdef;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,21 +9,21 @@ import java.util.List;
 import java.util.Map;
 
 import com.prevaj.evaluation.config.FrameworkConfig;
-import com.prevaj.evaluation.stepdef.context.UIScenarioContext;
+import com.prevaj.evaluation.stepdef.context.UiScenarioContext;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class UITestSteps {
+public class UiTestSteps {
 
 	private static final int TAX_DECIMAL_PLACES = 2;
 	private static final BigDecimal PERCENTAGE_DIVISOR = BigDecimal.valueOf(100);
 
-	private final UIScenarioContext context;
+	private final UiScenarioContext context;
 
-	public UITestSteps(UIScenarioContext context) {
+	public UiTestSteps(UiScenarioContext context) {
 		this.context = context;
 	}
 

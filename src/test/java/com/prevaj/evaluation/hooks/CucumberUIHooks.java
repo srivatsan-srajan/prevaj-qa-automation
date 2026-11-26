@@ -1,19 +1,18 @@
-
 package com.prevaj.evaluation.hooks;
 
 import org.openqa.selenium.WebDriver;
 
 import com.prevaj.evaluation.config.FrameworkConfig;
-import com.prevaj.evaluation.diagnostics.UIDiagnostics;
+import com.prevaj.evaluation.diagnostics.UiDiagnostics;
 import com.prevaj.evaluation.ui.driver.DriverManager;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-public class CucumberUIHooks {
+public class CucumberUiHooks {
 
-	private final UIDiagnostics diagnostics = new UIDiagnostics();
+	private final UiDiagnostics diagnostics = new UiDiagnostics();
 
 	@Before(value = "@ui", order = 0)
 	public void setUp() {

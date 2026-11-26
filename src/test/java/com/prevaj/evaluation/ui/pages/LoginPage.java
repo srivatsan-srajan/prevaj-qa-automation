@@ -1,4 +1,3 @@
-
 package com.prevaj.evaluation.ui.pages;
 
 import org.openqa.selenium.By;
