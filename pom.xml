@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.prevaj.evaluation</groupId>
+	<artifactId>prevaj-qa-automation</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<properties>
+		<maven.compiler.release>25</maven.compiler.release>
+		<selenium.version>4.39.0</selenium.version>
+		<cucumber.version>7.33.0</cucumber.version>
+		<rest.assured.version>5.5.6</rest.assured.version>
+		<junit.version>5.14.2</junit.version>
+		<junit.platform.version>1.14.2</junit.platform.version>
+		<jackson.databind.version>2.20.1</jackson.databind.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Execution configuration -->
+		<parallel.enabled>false</parallel.enabled>
+		<parallel.count>2</parallel.count>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit-platform-engine</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite</artifactId>
+			<version>${junit.platform.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest.assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.16.0</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.4</version>
+				<configuration>
+					<systemPropertyVariables>
+						<cucumber.execution.parallel.enabled>
+							${parallel.enabled}
+						</cucumber.execution.parallel.enabled>
+						<cucumber.execution.parallel.config.strategy>fixed</cucumber.execution.parallel.config.strategy>
+						<cucumber.execution.parallel.config.fixed.parallelism>
+							${parallel.count}
+						</cucumber.execution.parallel.config.fixed.parallelism>
+						<cucumber.execution.parallel.config.fixed.max-pool-size>
+							${parallel.count}
+						</cucumber.execution.parallel.config.fixed.max-pool-size>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

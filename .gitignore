@@ -1,0 +1,23 @@
+# Maven
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.metadata/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
