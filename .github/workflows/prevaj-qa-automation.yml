@@ -16,7 +16,6 @@ permissions:
   contents: read
 
 jobs:
-
   api-tests:
     name: API Automation Tests
     runs-on: ubuntu-latest
@@ -38,14 +37,21 @@ jobs:
           -Dapi.key="${{ secrets.REQRES_API_KEY }}"
           -Dcucumber.filter.tags="@api"
 
-      - name: Upload API test reports
+      - name: Upload API Surefire reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: api-test-reports
-          path: |
-            target/surefire-reports/
-            target/cucumber-report/cucumber.html
+          name: api-surefire-reports
+          path: target/surefire-reports/
+          retention-days: 14
+
+      - name: Upload API Cucumber HTML report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: api-cucumber-report
+          path: target/cucumber-report/cucumber.html
+          archive: false
           if-no-files-found: error
           retention-days: 14
 
@@ -73,13 +79,20 @@ jobs:
           -Dparallel.enabled=true
           -Dparallel.count=3
 
-      - name: Upload UI test reports
+      - name: Upload UI Surefire reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: ui-test-reports
-          path: |
-            target/surefire-reports/
-            target/cucumber-report/cucumber.html
+          name: ui-surefire-reports
+          path: target/surefire-reports/
+          retention-days: 14
+
+      - name: Upload UI Cucumber HTML report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ui-cucumber-report
+          path: target/cucumber-report/cucumber.html
+          archive: false
           if-no-files-found: error
           retention-days: 14
