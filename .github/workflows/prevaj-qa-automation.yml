@@ -40,7 +40,7 @@ jobs:
 
       - name: Upload API test reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-test-reports
           path: |
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload UI test reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ui-test-reports
           path: |
