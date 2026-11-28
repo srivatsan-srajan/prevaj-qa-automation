@@ -76,7 +76,7 @@ jobs:
       - name: Run UI tests
         run: >
           mvn --batch-mode clean test
-          -Dbrowser=firefox
+          -Dbrowser=chrome
           -Dheadless=true
           -Dcucumber.filter.tags="@ui"
           -Dparallel.enabled=true

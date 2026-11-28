@@ -94,15 +94,19 @@ public class UiTestSteps {
 		}
 	}
 
-	@Given("I remove the following item:")
+	@Given("I remove the following items:")
 	public void removeItem(DataTable dataTable) {
 
-		String product = dataTable.asList().get(0);
+		List<String> products = dataTable.asList();
 
-		assertTrue(context.getSelectedProducts().contains(product), "Product was not selected: " + product);
+	    for (String product : products) {
 
-		context.getCartPage().removeProduct(product);
-		context.getSelectedProducts().remove(product);
+	        assertTrue(context.getSelectedProducts().contains(product),
+	                "Product was not selected: " + product);
+
+	        context.getCartPage().removeProduct(product);
+	        context.getSelectedProducts().remove(product);
+	    }
 	}
 
 	@Given("I click on the CHECKOUT button")

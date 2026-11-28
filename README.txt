@@ -49,7 +49,7 @@ src/test/java/com/prevaj/evaluation
   - UserModule: handles user-related operations, including retrieving users across multiple pages and converting responses into Java objects.
 
 - api/payloads
-  - LoginPayload, UserPayload and UserListResponse: Java classes used to store API request and response data.
+  - LoginPayload, UserPayload, CreateUserRequest and UserListResponse: Java classes used to store API request and response data.
 
 - config
   - FrameworkConfig: reads framework.properties and allows values to be overridden through system properties. API keys can be supplied through an environment variable or system property.
@@ -78,7 +78,7 @@ src/test/java/com/prevaj/evaluation
 
 src/test/resources
 
-- features: contains API-Test.feature and UI-Test.feature, which define the test scenarios.
+- features: contains Api-Test.feature and Ui-Test.feature, which define the test scenarios.
 - config/framework.properties: contains default application URLs, browser settings and timeout values.
 
 5. DESIGN DECISIONS
@@ -167,7 +167,7 @@ UI Automation Job:
 
 - Checks out the source code.
 - Configures Java 25 using Temurin.
-- Executes Firefox UI scenarios in headless mode.
+- Executes Chrome UI scenarios in headless mode.
 - Executes UI scenarios in parallel using three threads.
 - Publishes Surefire and Cucumber reports.
 

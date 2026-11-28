@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prevaj.evaluation.api.modules.UserModule;
 import com.prevaj.evaluation.api.payloads.CreateUserRequest;
 import com.prevaj.evaluation.api.payloads.LoginPayload;
@@ -92,7 +94,7 @@ public class ApiTestSteps {
 		assertEquals(expectedStatus, context.getResponse().statusCode(), "Unexpected HTTP response status");
 	}
 
-	@When("I create a user with following {word} {word}")
+	@When("I create a user with following {string} {string}")
 	public void createNewUser(String name, String job) {
 		context.setCreatedUser(userModule.createUser(new CreateUserRequest(name, job)));
 	}
@@ -101,27 +103,28 @@ public class ApiTestSteps {
 	public void verifyCreatedUser(DataTable dataTable) {
 
 		UserPayload createdUser = context.getCreatedUser();
-
 		assertNotNull(createdUser);
 
 		Map<String, String> expected = dataTable.asMaps().get(0);
 		List<String> fields = dataTable.row(0);
 
+		Map<String, Object> actual = new ObjectMapper().convertValue(createdUser,
+				new TypeReference<Map<String, Object>>() {
+				});
+
 		for (String field : fields) {
 
-			switch (field) {
-			case "name" -> assertEquals(expected.get(field), createdUser.getName());
+			assertTrue(actual.containsKey(field), "Response does not contain field: " + field);
 
-			case "job" -> assertEquals(expected.get(field), createdUser.getJob());
+			Object actualValue = actual.get(field);
+			String expectedValue = expected.get(field);
 
-			case "id" -> assertTrue(createdUser.getId() > 0, "Created user should have an ID");
+			if (expectedValue != null && !expectedValue.isBlank()) {
+				assertEquals(expectedValue, String.valueOf(actualValue), "Mismatch in field: " + field);
+			} else {
+				assertNotNull(actualValue, "Field should not be null: " + field);
 
-			case "createdAt" -> {
-				assertNotNull(createdUser.getCreatedAt());
-				assertFalse(createdUser.getCreatedAt().isBlank(), "Created timestamp should not be empty");
-			}
-
-			default -> throw new IllegalArgumentException("Unsupported response field: " + field);
+				assertFalse(String.valueOf(actualValue).isBlank(), "Field should not be empty: " + field);
 			}
 		}
 	}

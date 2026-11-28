@@ -17,7 +17,7 @@ Feature: ReqRes User API
     Then the response status should be 404
 
   Scenario Outline: Create users with different details
-    When I create a user with following <name> <job>
+    When I create a user with following "<name>" "<job>"
     Then response should contain the following data
       | name   | job   | id | createdAt |
       | <name> | <job> |    |           |
